@@ -14,7 +14,7 @@ export type CheckboxProps = {
 const Checkbox = ({
   label,
   labelFor = '',
-  labelColor = 'black',
+  labelColor = 'white',
   isChecked = false,
   value,
   onCheck,
