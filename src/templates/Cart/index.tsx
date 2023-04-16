@@ -20,7 +20,7 @@ export type CartTemplateProps = {
 const Cart = ({
   recommendedGames,
   recommendedHighlight,
-  items,
+  items = [],
   total,
   cards
 }: CartTemplateProps) => {
