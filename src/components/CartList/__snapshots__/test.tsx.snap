@@ -132,7 +132,7 @@ exports[`<CartList /> should render the cart list 1`] = `
   }
 }
 
-<main
+<div
   class="c0"
 >
   <div
@@ -207,5 +207,5 @@ exports[`<CartList /> should render the cart list 1`] = `
       R$ 330,00
     </span>
   </div>
-</main>
+</div>
 `
