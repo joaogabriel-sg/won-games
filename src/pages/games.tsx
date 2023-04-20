@@ -12,7 +12,7 @@ export default function GamesPage(props: GamesTemplateProps) {
   return <GamesTemplate {...props} />
 }
 
-export const getStaticProps: GetStaticProps<GamesTemplateProps> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query<QueryGames, QueryGamesVariables>({
@@ -28,10 +28,7 @@ export const getStaticProps: GetStaticProps<GamesTemplateProps> = async () => {
         title: game.name,
         developer: game.developers[0].name,
         img: `http://127.0.0.1:1337${game.cover!.url}`,
-        price: new Intl.NumberFormat('en', {
-          style: 'currency',
-          currency: 'USD'
-        }).format(game.price)
+        price: game.price
       }))
     },
     revalidate: 60 // 1 minute
