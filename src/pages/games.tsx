@@ -1,20 +1,36 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 
 import GamesTemplate, { GamesTemplateProps } from 'templates/Games'
 import filterItemsMock from 'components/ExploreSidebar/mock'
-import gamesMock from 'components/GameCardSlider/mock'
+
+import { initializeApollo } from 'utils/apollo'
+
+import { QUERY_GAMES } from 'graphql/queries/games'
+import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
 
 export default function GamesPage(props: GamesTemplateProps) {
   return <GamesTemplate {...props} />
 }
 
-export const getServerSideProps: GetServerSideProps<
-  GamesTemplateProps
-> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query<QueryGames, QueryGamesVariables>({
+    query: QUERY_GAMES,
+    variables: { limit: 9 }
+  })
+
   return {
     props: {
       filterItems: filterItemsMock,
-      games: gamesMock
-    }
+      games: data.games.map((game) => ({
+        slug: game.slug,
+        title: game.name,
+        developer: game.developers[0].name,
+        img: `http://127.0.0.1:1337${game.cover!.url}`,
+        price: game.price
+      }))
+    },
+    revalidate: 60 // 1 minute
   }
 }
