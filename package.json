@@ -16,7 +16,7 @@
     "build-storybook": "build-storybook",
     "postinstall": "husky install",
     "prepare": "husky install",
-    "schema:download": "apollo client:download-schema --endpoint=http://localhost:1337/graphql schema-temp.gql",
+    "schema:download": "apollo client:download-schema --endpoint=http://127.0.0.1:1337/graphql schema-temp.gql",
     "schema:convert": "node convertToNonNull.js",
     "codegen": "apollo codegen:generate --target typescript --excludes=node_modules/ --includes=src/graphql/**/*.ts --localSchemaFile schema.gql --tagName=gql --outputFlat src/graphql/generated",
     "types:generate": "yarn schema:download && yarn schema:convert && yarn codegen"
