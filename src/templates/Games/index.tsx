@@ -5,6 +5,8 @@ import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import GameCard, { GameCardProps } from 'components/GameCard'
 import { Grid } from 'components/Grid'
 
+import { useQueryGames } from 'graphql/queries/games'
+
 import * as S from './styles'
 
 export type GamesTemplateProps = {
@@ -12,13 +14,15 @@ export type GamesTemplateProps = {
   filterItems: ItemProps[]
 }
 
-const GamesTemplate = ({ filterItems, games = [] }: GamesTemplateProps) => {
+const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
+  const { data, fetchMore } = useQueryGames({ variables: { limit: 15 } })
+
   const handleFilter = () => {
     return
   }
 
   const handleShowMore = () => {
-    return
+    fetchMore({ variables: { limit: 15, start: data?.games.length } })
   }
 
   return (
@@ -28,8 +32,15 @@ const GamesTemplate = ({ filterItems, games = [] }: GamesTemplateProps) => {
 
         <section>
           <Grid>
-            {games.map((game) => (
-              <GameCard key={game.title} {...game} />
+            {data?.games.map((game) => (
+              <GameCard
+                key={game.slug}
+                title={game.name}
+                slug={game.slug}
+                developer={game.developers[0].name}
+                img={`http://127.0.0.1:1337${game.cover!.url}`}
+                price={game.price}
+              />
             ))}
           </Grid>
 
