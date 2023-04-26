@@ -1,3 +1,4 @@
+import NextNProgress from 'nextjs-progressbar'
 import { ApolloProvider } from '@apollo/client'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -29,6 +30,12 @@ function App({ Component, pageProps }: AppProps) {
             />
           </Head>
           <GlobalStyles />
+          <NextNProgress
+            color="#F231A5"
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={5}
+          />
           <Component {...pageProps} />
         </CartProvider>
       </ThemeProvider>
