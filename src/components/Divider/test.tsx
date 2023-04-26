@@ -1,9 +1,9 @@
 import { Divider } from '.'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render } from 'utils/test-utils'
 
 describe('<Divider />', () => {
   it('should render correctly', () => {
-    const { container } = renderWithTheme(<Divider />)
+    const { container } = render(<Divider />)
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       .c0 {
