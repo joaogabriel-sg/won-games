@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { signout } from 'next-auth/client'
 import { ChevronDown } from 'styled-icons/boxicons-regular'
 import {
   AccountCircle,
@@ -40,12 +41,10 @@ const UserDropdown = ({ username }: UserDropdownProps) => (
           </S.Link>
         </Link>
 
-        <Link href="/logout" passHref>
-          <S.Link title="Sign out">
-            <ExitToApp />
-            <span>Sign out</span>
-          </S.Link>
-        </Link>
+        <S.Link role="button" onClick={() => signout()} title="Sign out">
+          <ExitToApp />
+          <span>Sign out</span>
+        </S.Link>
       </S.Nav>
     </Dropdown>
   </>

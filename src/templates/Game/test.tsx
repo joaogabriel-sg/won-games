@@ -1,4 +1,5 @@
 import 'match-media-mock'
+import { ReactNode } from 'react'
 
 import { render, screen } from 'utils/test-utils'
 
@@ -9,6 +10,7 @@ import gamesMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
 
 import { GameDetailsProps } from 'components/GameDetails'
+
 import Game, { GameTemplateProps } from '.'
 
 const props: GameTemplateProps = {
@@ -23,6 +25,15 @@ const props: GameTemplateProps = {
   recommendedTitle: 'You may like these games',
   recommendedGames: gamesMock
 }
+
+jest.mock('templates/Base', () => {
+  return {
+    __esModule: true,
+    default: function Mock({ children }: { children: ReactNode }) {
+      return <div data-testid="Mock Base">{children}</div>
+    }
+  }
+})
 
 jest.mock('components/Menu', () => {
   return {

@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FormSignIn /> should render the form 1`] = `
+.c4 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
 .c8 {
   background: linear-gradient(180deg,#ff5f5f 0%,#f062c0 50%);
   display: -webkit-inline-box;
@@ -110,12 +116,6 @@ exports[`<FormSignIn /> should render the form 1`] = `
   border-bottom: 0.1rem solid #29b3a3;
 }
 
-.c4 {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-}
-
 .c6 {
   display: block;
   font-size: 1.4rem;
@@ -205,9 +205,12 @@ exports[`<FormSignIn /> should render the form 1`] = `
         </a>
         <button
           class="c7 c8"
+          type="submit"
         >
           <span>
-            Sign in now
+            <span>
+              Sign in now
+            </span>
           </span>
         </button>
         <div

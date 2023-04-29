@@ -1,4 +1,5 @@
 import 'match-media-mock'
+import { ReactNode } from 'react'
 
 import { render, screen } from 'utils/test-utils'
 
@@ -13,6 +14,15 @@ const props: WishlistTemplateProps = {
   recommendedGames: gamesMock,
   recommendedHighlight: highlightMock
 }
+
+jest.mock('templates/Base', () => {
+  return {
+    __esModule: true,
+    default: function Mock({ children }: { children: ReactNode }) {
+      return <div data-testid="Mock Base">{children}</div>
+    }
+  }
+})
 
 jest.mock('components/Showcase', () => {
   return {

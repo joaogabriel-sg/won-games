@@ -5,6 +5,8 @@ import OrdersList, { OrdersListProps } from 'components/OrdersList'
 
 import ordersMock from 'components/OrdersList/mock'
 
+import protectedRoutes from 'utils/protected-routes'
+
 export default function ProfileCards({ items }: OrdersListProps) {
   return (
     <Profile>
@@ -13,12 +15,13 @@ export default function ProfileCards({ items }: OrdersListProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<
-  OrdersListProps
-> = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await protectedRoutes(context)
+
   return {
     props: {
-      items: ordersMock
+      items: ordersMock,
+      session
     }
   }
 }

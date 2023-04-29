@@ -16,6 +16,7 @@ exports[`<ProfileMenu /> should render the heading 1`] = `
 }
 
 .c1 {
+  cursor: pointer;
   -webkit-text-decoration: none;
   text-decoration: none;
   display: -webkit-box;
@@ -148,7 +149,7 @@ exports[`<ProfileMenu /> should render the heading 1`] = `
   </a>
   <a
     class="c1"
-    href="/logout"
+    role="button"
   >
     <svg
       aria-hidden="true"

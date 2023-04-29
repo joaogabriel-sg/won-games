@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { useSession } from 'next-auth/client'
 
 import { Container } from 'components/Container'
 import Menu from 'components/Menu'
@@ -10,20 +11,24 @@ type BaseProps = {
   children: ReactNode
 }
 
-const Base = ({ children }: BaseProps) => (
-  <S.Wrapper>
-    <Container>
-      <Menu />
-    </Container>
+const Base = ({ children }: BaseProps) => {
+  const [session, loading] = useSession()
 
-    <S.Content>{children}</S.Content>
-
-    <S.SectionFooter>
+  return (
+    <S.Wrapper>
       <Container>
-        <Footer />
+        <Menu username={session?.user?.name} loading={loading} />
       </Container>
-    </S.SectionFooter>
-  </S.Wrapper>
-)
+
+      <S.Content>{children}</S.Content>
+
+      <S.SectionFooter>
+        <Container>
+          <Footer />
+        </Container>
+      </S.SectionFooter>
+    </S.Wrapper>
+  )
+}
 
 export default Base
