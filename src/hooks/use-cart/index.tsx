@@ -1,6 +1,7 @@
 import {
   ReactNode,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState
@@ -14,7 +15,7 @@ import formatPrice from 'utils/format-price'
 
 const CART_KEY = 'cartItems'
 
-type CartItems = {
+export type CartItem = {
   id: string
   img: string
   title: string
@@ -22,7 +23,7 @@ type CartItems = {
 }
 
 export type CartContextData = {
-  items: CartItems[]
+  items: CartItem[]
   quantity: number
   total: string
   loading: boolean
@@ -83,9 +84,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     saveCart(newCartItems)
   }
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     saveCart([])
-  }
+  }, [])
 
   return (
     <CartContext.Provider
