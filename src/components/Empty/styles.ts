@@ -6,10 +6,10 @@ export const Wrapper = styled.main`
   align-items: center;
   justify-content: center;
   text-align: center;
-`
 
-export const Image = styled.img`
-  max-width: 100%;
+  img {
+    object-fit: cover;
+  }
 `
 
 export const Title = styled.h2`
