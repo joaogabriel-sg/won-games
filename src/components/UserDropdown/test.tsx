@@ -1,7 +1,18 @@
 import userEvent from '@testing-library/user-event'
-import { render, screen } from 'utils/test-utils'
+import { render, screen, waitFor } from 'utils/test-utils'
 
 import UserDropdown from '.'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+useRouter.mockImplementation(() => ({}))
+
+jest.mock('next/link', () => ({
+  __esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div>{children}</div>
+  }
+}))
 
 describe('<UserDropdown />', () => {
   it('should render the username', () => {
@@ -15,12 +26,12 @@ describe('<UserDropdown />', () => {
 
     await userEvent.click(screen.getByText(/jgsg/i))
 
-    expect(
-      screen.getByRole('link', { name: /my profile/i })
-    ).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /wishlist/i })).toBeInTheDocument()
-    expect(
-      screen.getByRole('button', { name: /sign out/i })
-    ).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByText(/my profile/i)).toBeInTheDocument()
+      expect(screen.getByText(/wishlist/i)).toBeInTheDocument()
+      expect(
+        screen.getByRole('button', { name: /sign out/i })
+      ).toBeInTheDocument()
+    })
   })
 })
