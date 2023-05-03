@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event'
 import { render, screen } from 'utils/test-utils'
 import { CartContextDefaultValues } from 'hooks/use-cart'
 
-import GameItem, { GameItemProps, PaymentInfoProps } from '.'
+import GameItem, { GameItemProps } from '.'
 
 const props: GameItemProps = {
   id: '1',
@@ -56,7 +56,7 @@ describe('<GameItem />', () => {
   })
 
   it('should render the payment info', () => {
-    const paymentInfo: PaymentInfoProps = {
+    const paymentInfo = {
       flag: 'mastercard',
       img: '/img/master-card.png',
       number: '**** **** **** 4326',
@@ -73,5 +73,18 @@ describe('<GameItem />', () => {
     expect(screen.getByText(paymentInfo.number)).toBeInTheDocument()
 
     expect(screen.getByText(paymentInfo.purchaseDate)).toBeInTheDocument()
+  })
+
+  it('should render free game when there is no paymentInfo', () => {
+    const paymentInfo = {
+      flag: null,
+      img: null,
+      number: 'Free Game',
+      purchaseDate: 'Purchase made on 07/20/2020 at 20:32'
+    }
+
+    render(<GameItem {...props} paymentInfo={paymentInfo} />)
+
+    expect(screen.getByText(/free game/i)).toBeInTheDocument()
   })
 })
