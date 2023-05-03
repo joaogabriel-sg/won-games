@@ -33,7 +33,7 @@ function App({ Component, pageProps }: AppProps) {
                 <meta name="theme-color" content="#06092B" />
                 <meta
                   name="description"
-                  content="The best Game Stores in the world!"
+                  content="The best Game Store in the world!"
                 />
               </Head>
               <DefaultSeo {...SEO} />
