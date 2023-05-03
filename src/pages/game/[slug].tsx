@@ -3,7 +3,9 @@ import { useRouter } from 'next/router'
 
 import Game, { GameTemplateProps } from 'templates/Game'
 
+import { getImageUrl } from 'utils/getImageUrl'
 import { initializeApollo } from 'utils/apollo'
+
 import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from 'graphql/queries/games'
 import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
 import {
@@ -71,7 +73,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      cover: `http://127.0.0.1:1337${game.cover?.src}`,
+      cover: getImageUrl(game.cover?.src),
       gameInfo: {
         id: game.id,
         title: game.name,
@@ -79,7 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         description: game.short_description
       },
       gallery: game.gallery.map((image) => ({
-        src: `http://127.0.0.1:1337${image.src}`,
+        src: getImageUrl(image.src),
         label: image.label as string
       })),
       description: game.description,
