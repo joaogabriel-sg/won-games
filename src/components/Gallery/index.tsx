@@ -5,6 +5,8 @@ import {
   ArrowForwardIos as ArrowRight,
   Close
 } from 'styled-icons/material-outlined'
+import Image from 'next/image'
+
 import Slider, { SliderSettings } from 'components/Slider'
 
 import * as S from './styles'
@@ -80,9 +82,10 @@ const Gallery = ({ items }: GalleryProps) => {
     <S.Wrapper>
       <Slider ref={slider} settings={settings}>
         {items.map((item, index) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             key={`thumb-${item.src}`}
+            width={295}
+            height={165}
             role="button"
             src={item.src}
             alt={`Thumb - ${item.label}`}
@@ -108,8 +111,9 @@ const Gallery = ({ items }: GalleryProps) => {
         <S.Content>
           <Slider ref={slider} settings={modalSettings}>
             {items.map((item) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
+              <Image
+                width={1200}
+                height={675}
                 key={`gallery-${item.src}`}
                 src={item.src}
                 alt={item.label}
