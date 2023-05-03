@@ -2,6 +2,10 @@ import ProfileMenu from '.'
 import { render, screen } from 'utils/test-utils'
 import theme from 'styles/theme'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+useRouter.mockImplementation(() => ({}))
+
 describe('<ProfileMenu />', () => {
   it('should render the heading', () => {
     const { container } = render(<ProfileMenu />)
