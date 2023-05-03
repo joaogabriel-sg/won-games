@@ -69,7 +69,7 @@ describe('useWishlist', () => {
       wrapper
     })
 
-    act(() => {
+    await act(() => {
       result.current.addToWishlist('3')
     })
 
