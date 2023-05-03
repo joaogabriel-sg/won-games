@@ -30,7 +30,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     query: QUERY_ORDERS,
     variables: {
       identifier: session?.id as string
-    }
+    },
+    fetchPolicy: 'no-cache'
   })
 
   return {
