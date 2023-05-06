@@ -19,7 +19,9 @@
     "schema:download": "apollo client:download-schema --endpoint=http://127.0.0.1:1337/graphql schema-temp.gql",
     "schema:convert": "node convertToNonNull.js",
     "codegen": "apollo codegen:generate --target typescript --excludes=node_modules/ --includes=src/graphql/**/*.ts --localSchemaFile schema.gql --tagName=gql --outputFlat src/graphql/generated",
-    "types:generate": "yarn schema:download && yarn schema:convert && yarn codegen"
+    "types:generate": "yarn schema:download && yarn schema:convert && yarn codegen",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "lint-staged": {
     "src/**/*": [
@@ -54,6 +56,7 @@
     "@storybook/builder-webpack5": "^6.4.17",
     "@storybook/manager-webpack5": "^6.4.17",
     "@storybook/react": "6.4.17",
+    "@testing-library/cypress": "^9.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^8.0.1",
@@ -68,9 +71,11 @@
     "@typescript-eslint/eslint-plugin": "5.10.2",
     "@typescript-eslint/parser": "5.10.2",
     "apollo": "^2.33.4",
+    "cypress": "^12.11.0",
     "eslint": "^8.8.0",
     "eslint-config-next": "^12.0.10",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
