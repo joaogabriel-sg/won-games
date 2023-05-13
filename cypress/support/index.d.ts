@@ -28,6 +28,12 @@ declare global {
       signUp(user: User): Chainable<Element>
 
       /**
+       * Custom command to sign in
+       * @example cy.signIn()
+       */
+      signIn(email?: string, password?: string): Chainable<Element>
+
+      /**
        * Custom command to get element by data-cy
        * @example cy.getByDataCy('selector')
        */
