@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { User } from "./generate"
+
 type ShowcaseAttributes = {
   name: string
   highlight?: boolean
@@ -18,6 +20,12 @@ declare global {
        * @example cy.google()
        */
       google(): Chainable<Window>
+
+      /**
+       * Custom command to sign up
+       * @example cy.signUp({ username: 'jgsg', email: 'jgsg@email.com', password: '123' })
+       */
+      signUp(user: User): Chainable<Element>
 
       /**
        * Custom command to get element by data-cy
