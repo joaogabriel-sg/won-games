@@ -68,6 +68,18 @@ declare global {
        * @example cy.shouldBeGreaterThan(50)
        */
       shouldBeGreaterThan(value: number): Chainable<Element>
+
+      /**
+       * Custom command to add to cart by index
+       * @example cy.addToCartByIndex(1)
+       */
+      addToCartByIndex(index: number): Chainable<Element>
+
+      /**
+       * Custom command to remove from cart by index
+       * @example cy.removeFromCartByIndex(1)
+       */
+      removeFromCartByIndex(index: number): Chainable<Element>
     }
   }
 }
