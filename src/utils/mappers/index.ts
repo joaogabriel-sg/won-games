@@ -33,7 +33,7 @@ export const gamesMapper = (
         title: game.name,
         slug: game.slug,
         developer: game.developers[0].name,
-        img: getImageUrl(game.cover?.url),
+        img: getImageUrl(game.cover?.url) ?? '',
         price: game.price
       }))
     : []
@@ -59,7 +59,7 @@ export const cartMapper = (games: QueryGames_games[] | undefined) => {
   return games
     ? games.map((game) => ({
         id: game.id,
-        img: getImageUrl(game.cover?.url),
+        img: getImageUrl(game.cover?.url) ?? '',
         price: formatPrice(game.price),
         title: game.name
       }))
