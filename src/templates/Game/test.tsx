@@ -14,6 +14,7 @@ import { GameDetailsProps } from 'components/GameDetails'
 import Game, { GameTemplateProps } from '.'
 
 const props: GameTemplateProps = {
+  slug: 'population-zero',
   cover: 'bg-image.jpg',
   gameInfo: gameInfoMock,
   gallery: galleryMock,

@@ -10,7 +10,8 @@ import Cart from '.'
 const props = {
   recommendedTitle: 'You may like these games',
   recommendedHighlight: highlightMock,
-  recommendedGames: gamesMock
+  recommendedGames: gamesMock,
+  session: {}
 }
 
 jest.mock('templates/Base', () => ({
